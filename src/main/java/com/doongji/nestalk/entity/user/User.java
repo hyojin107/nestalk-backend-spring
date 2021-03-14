@@ -39,6 +39,10 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDate birthday;
 
+    public User(Long userId){
+        this.userId = userId;
+    }
+
     public User(String email, String name, String password, String phone, LocalDate birthday) {
         this(null, email, name, password, phone, birthday);
     }
