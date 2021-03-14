@@ -29,7 +29,7 @@ public class FriendController {
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendJoinRequest FriendjoinRequest
     ) {
-        Friend friend = friendService.join(
+        Friend friend = friendService.register(
                 authentication.userId,
                 FriendjoinRequest.getFriendEmail()
         );

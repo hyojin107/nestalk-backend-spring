@@ -60,7 +60,7 @@ class FriendServiceTest {
     @Test
     @Order(2)
     void 친구_등록(){
-        Friend friend = friendService.join(user.getUserId(), friendEmail);
+        Friend friend = friendService.register(user.getUserId(), friendEmail);
         assertThat(friend).isNotNull();
         assertThat(friend.getMe().getUserId()).isEqualTo(user.getUserId());
         assertThat(friend.getFriend()).isEqualTo(friendEmail);
