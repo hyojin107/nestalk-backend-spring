@@ -25,7 +25,7 @@ public class FriendController {
 
     @ApiOperation(value = "친구 등록 (JWT 불필요)")
     @PostMapping(path = "friend")
-    public ResponseEntity<FriendDto> join(
+    public ResponseEntity<FriendDto> friendRegister(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendJoinRequest joinRequest
     ) {
