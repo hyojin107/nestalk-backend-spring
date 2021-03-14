@@ -27,11 +27,11 @@ public class FriendController {
     @PostMapping(path = "friend")
     public ResponseEntity<FriendDto> friendRegister(
             @AuthenticationPrincipal JwtAuthentication authentication,
-            @RequestBody FriendJoinRequest joinRequest
+            @RequestBody FriendJoinRequest FriendjoinRequest
     ) {
         Friend friend = friendService.join(
                 authentication.userId,
-                joinRequest.getFriendEmail()
+                FriendjoinRequest.getFriendEmail()
         );
         return ResponseEntity.ok(new FriendDto(friend));
     }
