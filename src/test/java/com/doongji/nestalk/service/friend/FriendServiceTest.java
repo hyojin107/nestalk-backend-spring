@@ -52,9 +52,7 @@ class FriendServiceTest {
     @Test
     @Order(1)
     void 사용자_회원가입() {
-        User user = userService.join(email, name, password, phone, birthday);
-        this.user = user;
-        log.info("User: {}", user);
+        this.user = userService.join(email, name, password, phone, birthday);
     }
 
     @Test
