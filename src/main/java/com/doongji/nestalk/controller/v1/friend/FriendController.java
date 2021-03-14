@@ -1,6 +1,5 @@
 package com.doongji.nestalk.controller.v1.friend;
 
-
 import com.doongji.nestalk.controller.v1.friend.dto.FriendDto;
 import com.doongji.nestalk.controller.v1.friend.dto.FriendJoinRequest;
 import com.doongji.nestalk.entity.user.Friend;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @Api(tags = "친구 APIs")
 @RequestMapping("api/v1")
 @RequiredArgsConstructor
@@ -26,7 +24,7 @@ public class FriendController {
     private final FriendService friendService;
 
     @ApiOperation(value = "친구 등록 (JWT 불필요)")
-    @PostMapping(path = "friend/join")
+    @PostMapping(path = "friend")
     public ResponseEntity<FriendDto> join(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendJoinRequest joinRequest
