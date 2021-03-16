@@ -20,7 +20,7 @@ public class FriendService {
     private final FriendRepository friendRepository;
 
     @Transactional
-    public Friend register(Long userId, String friendEmail){
+    public Friend register(Long userId, String friendEmail) {
         checkNotNull(friendEmail, "friendEmail must be provided.");
 
         //친구의 user객체 가져오기

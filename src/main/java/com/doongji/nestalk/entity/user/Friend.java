@@ -6,9 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
-@Setter
 @ToString
-@RequiredArgsConstructor
+@EqualsAndHashCode(of = "friendId", callSuper = false)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Friend extends BaseTimeEntity {
 
@@ -27,7 +27,7 @@ public class Friend extends BaseTimeEntity {
 
     private String friendNickName;
 
-    public Friend(Long userId, User friend){
+    public Friend(Long userId, User friend) {
         this.me = new User(userId);
         this.friend = friend;
         this.friendNickName = friend.getName();

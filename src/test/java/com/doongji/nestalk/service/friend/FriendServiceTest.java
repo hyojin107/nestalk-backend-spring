@@ -40,7 +40,7 @@ class FriendServiceTest {
     private User user;
 
     @BeforeAll
-    void setup(){
+    void setup() {
         friendEmail = "newFriend@gmail.com";
         name = "둥지";
         email = "doongji.team@gmail.com";
@@ -57,7 +57,7 @@ class FriendServiceTest {
 
     @Test
     @Order(2)
-    void 친구_등록(){
+    void 친구_등록() {
         Friend friend = friendService.register(user.getUserId(), friendEmail);
         assertThat(friend).isNotNull();
         assertThat(friend.getMe().getUserId()).isEqualTo(user.getUserId());
