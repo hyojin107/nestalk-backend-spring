@@ -23,10 +23,15 @@ public class FriendService {
     public Friend register(Long userId, String friendEmail) {
         checkNotNull(friendEmail, "friendEmail must be provided.");
 
-        //친구의 user객체 가져오기
-        User friend = userRepository.findByEmail(friendEmail)
-                        .orElseThrow(() -> new NotFoundException(User.class, friendEmail));
-        return friendRepository.save(new Friend(userId, friend));
+        return userRepository.findByEmail(friendEmail)
+                .map(friend ->
+                    friendRepository.save(new Friend(
+                            userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)),
+                            friend,
+                            null)
+                    )
+                )
+                .orElseThrow(() -> new NotFoundException(User.class, friendEmail));
     }
 
 }
