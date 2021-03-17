@@ -23,6 +23,9 @@ public class FriendDto {
     @ApiModelProperty(value = "친구 객체", required = true)
     private User friend;
 
+    @ApiModelProperty(value = "친구 닉네임", required = true)
+    private String friendNickName;
+
     public FriendDto(Friend source) {
         copyProperties(source, this);
     }
