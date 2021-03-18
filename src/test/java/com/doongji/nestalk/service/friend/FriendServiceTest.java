@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -52,6 +53,9 @@ class FriendServiceTest {
         assertThat(friend).isNotNull();
         assertThat(friend.getMe().getUserId()).isEqualTo(1L);
         assertThat(friend.getFriend().getEmail()).isEqualTo("newdoongji.team@naver.com");
+        assertThat(friend.getFriend().getName()).isEqualTo("친구친구");
+        assertThat(friend.getFriend().getPhone()).isEqualTo("010-1111-0000");
+        assertThat(friend.getFriend().getBirthday()).isEqualTo(LocalDate.of(1995,2,19));
         log.info("Friend: {}", friend);
     }
 
