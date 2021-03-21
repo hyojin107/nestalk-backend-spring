@@ -23,7 +23,7 @@ public class FriendController {
 
     private final FriendService friendService;
 
-    @ApiOperation(value = "친구 등록 (JWT 불필요)")
+    @ApiOperation(value = "친구 등록 (JWT 필요)")
     @PostMapping(path = "friend")
     public ResponseEntity<FriendDto> friendRegister(
             @AuthenticationPrincipal JwtAuthentication authentication,
