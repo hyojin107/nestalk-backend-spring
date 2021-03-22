@@ -1,9 +1,10 @@
 package com.doongji.nestalk.controller.v1.friend.dto;
 
+import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.Friend;
-import com.doongji.nestalk.entity.user.User;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,16 +13,17 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class FriendDto {
 
     @ApiModelProperty(value = "PK", required = true)
     private Long friendId;
 
     @ApiModelProperty(value = "사용자 객체", required = true)
-    private User me;
+    private UserDto me;
 
     @ApiModelProperty(value = "친구 객체", required = true)
-    private User friend;
+    private UserDto friend;
 
     @ApiModelProperty(value = "친구 닉네임", required = true)
     private String friendNickName;
