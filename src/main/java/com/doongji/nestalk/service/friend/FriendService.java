@@ -27,8 +27,7 @@ public class FriendService {
                 .map(friend ->
                     friendRepository.save(new Friend(
                             userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)),
-                            friend,
-                            null)
+                            friend)
                     )
                 )
                 .orElseThrow(() -> new NotFoundException(User.class, friendEmail));

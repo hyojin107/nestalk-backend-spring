@@ -30,8 +30,8 @@ public class Friend extends BaseTimeEntity {
 
     private String friendNickName;
 
-    public Friend(User me, User friend, String friendNickName){
-        this(null, me, friend, friendNickName);
+    public Friend(User me, User friend){
+        this(null, me, friend, null);
     }
 
     public Friend(Long friendId, User me, User friend, String friendNickName) {
