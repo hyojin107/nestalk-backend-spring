@@ -1,7 +1,8 @@
 package com.doongji.nestalk.service.friend;
 
 import com.doongji.nestalk.entity.friend.Friend;
-import com.doongji.nestalk.service.user.UserService;
+import com.doongji.nestalk.entity.user.User;
+import com.doongji.nestalk.repository.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,31 +22,18 @@ class FriendServiceTest {
     private FriendService friendService;
 
     @Autowired
-    private UserService userService;
-
-    private String friendEmail;
-
-    private String email;
-
-    private String name;
-
-    private String password;
-
-    private String phone;
-
-    private Long userId = 1L;
+    private UserRepository userRepository;
 
     @Test
-    @Order(1)
-    void 사용자_회원가입() {
-        userService.join("doongji.team@gmail.com", "둥지", "P@ssword1", "010-0000-0000", LocalDate.of(1995, 10, 7));
-        userService.join("newdoongji.team@naver.com", "친구친구", "P@ssword1", "010-1111-0000", LocalDate.of(1995, 2, 19));
-    }
-
-    @Test
-    @Order(2)
     void 친구_등록() {
+        //given
+        userRepository.save(new User("doongji.team@gmail.com", "둥지", "P@ssword1", "010-0000-0000", LocalDate.of(1995, 10, 7)));
+        userRepository.save(new User("newdoongji.team@naver.com", "친구친구", "P@ssword1", "010-1111-0000", LocalDate.of(1995, 2, 19)));
+
+        //when
         Friend friend = friendService.register(1L, "newdoongji.team@naver.com");
+
+        //then
         assertThat(friend).isNotNull();
         assertThat(friend.getMe().getUserId()).isEqualTo(1L);
         assertThat(friend.getFriend().getEmail()).isEqualTo("newdoongji.team@naver.com");
