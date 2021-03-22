@@ -29,11 +29,12 @@ public class FriendController {
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendJoinRequest FriendjoinRequest
     ) {
-        Friend friend = friendService.register(
-                authentication.userId,
-                FriendjoinRequest.getFriendEmail()
-        );
-        return ResponseEntity.ok(new FriendDto(friend));
+        return ResponseEntity.ok(new FriendDto(
+                friendService.register(
+                        authentication.userId,
+                        FriendjoinRequest.getFriendEmail()
+                )
+        ));
     }
 
 }
