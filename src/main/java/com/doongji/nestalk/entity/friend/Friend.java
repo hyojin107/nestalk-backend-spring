@@ -6,7 +6,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 @Getter
 @ToString(exclude = {"me", "friend"})
@@ -35,6 +37,9 @@ public class Friend extends BaseTimeEntity {
     }
 
     public Friend(Long friendId, User me, User friend, String friendNickName) {
+        checkNotNull(me.getUserId(), "userId must be provided.");
+        checkNotNull(friend.getEmail(), "friend's email must be provided.");
+
         this.friendId = friendId;
         this.me = me;
         this.friend = friend;
