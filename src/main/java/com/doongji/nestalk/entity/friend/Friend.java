@@ -1,6 +1,7 @@
-package com.doongji.nestalk.entity.user;
+package com.doongji.nestalk.entity.friend;
 
 import com.doongji.nestalk.entity.BaseTimeEntity;
+import com.doongji.nestalk.entity.user.User;
 import lombok.*;
 
 import javax.persistence.*;

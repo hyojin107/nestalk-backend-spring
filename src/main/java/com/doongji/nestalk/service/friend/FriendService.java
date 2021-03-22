@@ -1,6 +1,6 @@
-package com.doongji.nestalk.service.user;
+package com.doongji.nestalk.service.friend;
 
-import com.doongji.nestalk.entity.user.Friend;
+import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.entity.user.User;
 import com.doongji.nestalk.error.NotFoundException;
 import com.doongji.nestalk.repository.friend.FriendRepository;

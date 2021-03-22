@@ -2,9 +2,9 @@ package com.doongji.nestalk.controller.v1.friend;
 
 import com.doongji.nestalk.controller.v1.friend.dto.FriendDto;
 import com.doongji.nestalk.controller.v1.friend.dto.FriendJoinRequest;
-import com.doongji.nestalk.entity.user.Friend;
+import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.security.JwtAuthentication;
-import com.doongji.nestalk.service.user.FriendService;
+import com.doongji.nestalk.service.friend.FriendService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

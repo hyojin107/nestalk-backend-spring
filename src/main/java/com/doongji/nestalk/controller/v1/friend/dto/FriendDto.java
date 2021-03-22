@@ -1,7 +1,7 @@
 package com.doongji.nestalk.controller.v1.friend.dto;
 
 import com.doongji.nestalk.controller.v1.user.dto.UserDto;
-import com.doongji.nestalk.entity.user.Friend;
+import com.doongji.nestalk.entity.friend.Friend;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

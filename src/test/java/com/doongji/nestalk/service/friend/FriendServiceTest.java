@@ -1,8 +1,6 @@
 package com.doongji.nestalk.service.friend;
 
-import com.doongji.nestalk.entity.user.Friend;
-import com.doongji.nestalk.entity.user.User;
-import com.doongji.nestalk.service.user.FriendService;
+import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -10,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
