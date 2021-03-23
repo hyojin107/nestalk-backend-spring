@@ -24,10 +24,12 @@ public class Friend extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "me")
+    @Column(name = "user_id")
     private User me;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "friend")
+    @Column(name = "target_id")
     private User friend;
 
     @Column(name = "friend_nickname")
