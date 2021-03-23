@@ -19,20 +19,16 @@ public class Friend extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "friend_id")
     private Long friendId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "me")
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User me;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "friend")
-    @Column(name = "target_id")
+    @JoinColumn(name = "target_id")
     private User friend;
 
-    @Column(name = "friend_nickname")
     private String friendNickName;
 
     public Friend(User me, User friend){
