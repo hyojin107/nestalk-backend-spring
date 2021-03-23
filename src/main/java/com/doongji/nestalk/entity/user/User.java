@@ -1,12 +1,15 @@
 package com.doongji.nestalk.entity.user;
 
 import com.doongji.nestalk.entity.BaseTimeEntity;
+import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.security.Jwt;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -17,7 +20,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 @Entity
 @EqualsAndHashCode(of = "userId", callSuper = false)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
+@ToString(exclude = {"friends"})
 public class User extends BaseTimeEntity {
 
     @Id
@@ -38,6 +41,9 @@ public class User extends BaseTimeEntity {
 
     @Column(nullable = false)
     private LocalDate birthday;
+
+    @OneToMany(mappedBy = "me")
+    private List<Friend> friends = new ArrayList<>();
 
     public User(String email, String name, String password, String phone, LocalDate birthday) {
         this(null, email, name, password, phone, birthday);
