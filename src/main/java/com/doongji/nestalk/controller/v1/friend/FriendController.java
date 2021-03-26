@@ -40,8 +40,8 @@ public class FriendController {
     public ResponseEntity<FriendDto> nickNameUpdate(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendUpdateRequest friendUpdateRequest
-    ){
-        if(friendUpdateRequest.getNickName() == null || "".equals(friendUpdateRequest.getNickName()))
+    ) {
+        if (friendUpdateRequest.getNickName() == null || "".equals(friendUpdateRequest.getNickName()))
             return ResponseEntity.noContent().build();
 
         return ResponseEntity.ok(new FriendDto(

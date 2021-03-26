@@ -15,7 +15,7 @@ public class FriendUpdateRequest {
     @ApiModelProperty(value = "친구 닉네임", required = true)
     private String nickName;
 
-    public FriendUpdateRequest(String email, String nickName){
+    public FriendUpdateRequest(String email, String nickName) {
         this.email = email;
         this.nickName = nickName;
     }

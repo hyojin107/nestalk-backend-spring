@@ -33,7 +33,7 @@ public class FriendService {
     }
 
     @Transactional
-    public Friend update(Long userId, String email, String nickName){
+    public Friend update(Long userId, String email, String nickName) {
         Friend friend = friendRepository.findByMeAndFriend(
                 findById(userId),
                 userRepository.findByEmail(email)
@@ -45,7 +45,7 @@ public class FriendService {
     }
 
     @Transactional(readOnly = true)
-    public User findById(Long userId){
+    public User findById(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
     }
 

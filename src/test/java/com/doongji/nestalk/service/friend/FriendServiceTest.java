@@ -40,13 +40,13 @@ class FriendServiceTest {
         assertThat(friend.getFriend().getEmail()).isEqualTo("newdoongji.team@naver.com");
         assertThat(friend.getFriend().getName()).isEqualTo("친구친구");
         assertThat(friend.getFriend().getPhone()).isEqualTo("010-1111-0000");
-        assertThat(friend.getFriend().getBirthday()).isEqualTo(LocalDate.of(1995,2,19));
+        assertThat(friend.getFriend().getBirthday()).isEqualTo(LocalDate.of(1995, 2, 19));
         log.info("Friend: {}", friend);
     }
 
     @Test
     @Order(2)
-    void 닉네임_변경(){
+    void 닉네임_변경() {
         //given
         String email = "newdoongji.team@naver.com";
         String nickName = "칭구새이름";
