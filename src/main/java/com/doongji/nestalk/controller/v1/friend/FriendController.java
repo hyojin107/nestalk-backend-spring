@@ -41,9 +41,6 @@ public class FriendController {
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendUpdateRequest friendUpdateRequest
     ) {
-        if (friendUpdateRequest.getNickName() == null || "".equals(friendUpdateRequest.getNickName()))
-            return ResponseEntity.noContent().build();
-
         return ResponseEntity.ok(new FriendDto(
                 friendService.update(
                         authentication.userId,

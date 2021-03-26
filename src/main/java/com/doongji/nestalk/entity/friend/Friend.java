@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
@@ -32,7 +33,8 @@ public class Friend extends BaseTimeEntity {
     private String friendNickName;
 
     public void updateNickName(String friendNickName) {
-        checkNotNull(friendNickName, "friendNickName is must be provided.");
+        checkArgument(isNotEmpty(friendNickName), "friendNickName is must be provided.");
+
         this.friendNickName = friendNickName;
     }
 
