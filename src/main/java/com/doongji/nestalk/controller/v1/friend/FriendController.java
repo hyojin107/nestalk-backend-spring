@@ -2,6 +2,7 @@ package com.doongji.nestalk.controller.v1.friend;
 
 import com.doongji.nestalk.controller.v1.friend.dto.FriendDto;
 import com.doongji.nestalk.controller.v1.friend.dto.FriendJoinRequest;
+import com.doongji.nestalk.controller.v1.friend.dto.FriendUpdateRequest;
 import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.security.JwtAuthentication;
 import com.doongji.nestalk.service.friend.FriendService;
@@ -10,10 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "친구 APIs")
 @RequestMapping("api/v1")
@@ -33,6 +31,24 @@ public class FriendController {
                 friendService.register(
                         authentication.userId,
                         FriendjoinRequest.getFriendEmail()
+                )
+        ));
+    }
+
+    @ApiOperation(value = "친구 이름 변경 (JWT 필요)")
+    @PutMapping
+    public ResponseEntity<FriendDto> nickNameUpdate(
+            @AuthenticationPrincipal JwtAuthentication authentication,
+            @RequestBody FriendUpdateRequest friendUpdateRequest
+    ){
+        if(friendUpdateRequest.getNickName() == null || "".equals(friendUpdateRequest.getNickName()))
+            return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(new FriendDto(
+                friendService.update(
+                        authentication.userId,
+                        friendUpdateRequest.getEmail(),
+                        friendUpdateRequest.getNickName()
                 )
         ));
     }
