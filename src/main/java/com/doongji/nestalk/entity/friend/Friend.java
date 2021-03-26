@@ -31,6 +31,11 @@ public class Friend extends BaseTimeEntity {
 
     private String friendNickName;
 
+    public void updateNickName(String friendNickName){
+        checkNotNull(friendNickName, "friendNickName is must be provided.");
+        this.friendNickName = friendNickName;
+    }
+
     public Friend(User me, User friend){
         this(null, me, friend, null);
     }
