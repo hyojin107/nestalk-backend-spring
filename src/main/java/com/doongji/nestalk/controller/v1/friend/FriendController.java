@@ -44,7 +44,7 @@ public class FriendController {
         return ResponseEntity.ok(new FriendDto(
                 friendService.update(
                         authentication.userId,
-                        friendUpdateRequest.getEmail(),
+                        friendUpdateRequest.getFriendId(),
                         friendUpdateRequest.getNickName()
                 )
         ));

@@ -33,16 +33,16 @@ public class FriendService {
     }
 
     @Transactional
-    public Friend update(Long userId, String email, String nickName) {
+    public Friend update(Long userId, Long friendId, String nickName) {
         return friendRepository.findByMeAndFriend(
                 findById(userId),
-                userRepository.findByEmail(email)
-                        .orElseThrow(() -> new NotFoundException(User.class, email))
+                userRepository.findById(friendId)
+                        .orElseThrow(() -> new NotFoundException(User.class, friendId))
         ).map(friend -> {
             friend.updateNickName(nickName);
             return friend;
         })
-                .orElseThrow(() -> new NotFoundException(Friend.class, email));
+                .orElseThrow(() -> new NotFoundException(Friend.class, friendId));
     }
 
     @Transactional(readOnly = true)

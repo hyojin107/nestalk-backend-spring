@@ -48,11 +48,11 @@ class FriendServiceTest {
     @Order(2)
     void 닉네임_변경() {
         //given
-        String email = "newdoongji.team@naver.com";
+        Long friendId = 2L;
         String nickName = "칭구새이름";
 
         //when
-        Friend friend = friendService.update(1L, email, nickName);
+        Friend friend = friendService.update(1L, friendId, nickName);
 
         //then
         assertThat(friend).isNotNull();
