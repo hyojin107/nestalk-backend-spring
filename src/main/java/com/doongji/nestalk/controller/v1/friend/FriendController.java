@@ -45,7 +45,7 @@ public class FriendController {
                 friendService.update(
                         authentication.userId,
                         friendUpdateRequest.getFriendId(),
-                        friendUpdateRequest.getNickName()
+                        friendUpdateRequest.getNickname()
                 )
         ));
     }

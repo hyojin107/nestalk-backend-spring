@@ -13,6 +13,6 @@ public class FriendUpdateRequest {
     private Long friendId;
 
     @ApiModelProperty(value = "친구 닉네임", required = true)
-    private String nickName;
+    private String nickname;
 
 }

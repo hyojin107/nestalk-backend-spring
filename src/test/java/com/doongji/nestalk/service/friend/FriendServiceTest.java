@@ -49,14 +49,14 @@ class FriendServiceTest {
     void 닉네임_변경() {
         //given
         Long friendId = 2L;
-        String nickName = "칭구새이름";
+        String nickname = "칭구새이름";
 
         //when
-        Friend friend = friendService.update(1L, friendId, nickName);
+        Friend friend = friendService.update(1L, friendId, nickname);
 
         //then
         assertThat(friend).isNotNull();
-        assertThat(friend.getFriendNickName()).isEqualTo(nickName);
+        assertThat(friend.getFriendNickname()).isEqualTo(nickname);
 
         log.info("Friend: {}", friend);
     }
