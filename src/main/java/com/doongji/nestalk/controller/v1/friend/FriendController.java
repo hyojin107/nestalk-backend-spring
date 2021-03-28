@@ -14,7 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "친구 APIs")
-@RequestMapping("api/v1/friend")
+@RequestMapping("api/v1")
 @RequiredArgsConstructor
 @RestController
 public class FriendController {
@@ -22,7 +22,7 @@ public class FriendController {
     private final FriendService friendService;
 
     @ApiOperation(value = "친구 등록 (JWT 필요)")
-    @PostMapping
+    @PostMapping("friend")
     public ResponseEntity<FriendDto> friendRegister(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendJoinRequest FriendjoinRequest
@@ -36,7 +36,7 @@ public class FriendController {
     }
 
     @ApiOperation(value = "친구 이름 변경 (JWT 필요)")
-    @PatchMapping
+    @PatchMapping("friend")
     public ResponseEntity<FriendDto> nickNameUpdate(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendUpdateRequest friendUpdateRequest
