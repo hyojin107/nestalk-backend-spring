@@ -49,7 +49,7 @@ public class FriendService {
     }
 
     @Transactional(readOnly = true)
-    public User findById(Long userId) {
+    protected User findById(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
     }
 
