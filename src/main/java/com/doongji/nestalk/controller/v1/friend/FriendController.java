@@ -37,7 +37,7 @@ public class FriendController {
 
     @ApiOperation(value = "친구 이름 변경 (JWT 필요)")
     @PatchMapping("friend")
-    public ResponseEntity<FriendDto> nickNameUpdate(
+    public ResponseEntity<FriendDto> nicknameUpdate(
             @AuthenticationPrincipal JwtAuthentication authentication,
             @RequestBody FriendUpdateRequest friendUpdateRequest
     ) {
