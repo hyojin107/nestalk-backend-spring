@@ -24,9 +24,10 @@ public class FriendService {
 
         return userRepository.findByEmail(friendEmail)
                 .map(friend ->
-                        friendRepository.save(new Friend(
-                                findById(userId),
-                                friend)
+                        friendRepository.save(
+                                new Friend(
+                                        findById(userId), friend
+                                )
                         )
                 )
                 .orElseThrow(() -> new NotFoundException(User.class, friendEmail));
@@ -42,7 +43,9 @@ public class FriendService {
             friend.updateNickName(nickname);
             return friend;
         })
-                .orElseThrow(() -> new NotFoundException(Friend.class, friendId));
+                .orElseThrow(() ->
+                        new NotFoundException(Friend.class, friendId)
+                );
     }
 
     @Transactional(readOnly = true)
