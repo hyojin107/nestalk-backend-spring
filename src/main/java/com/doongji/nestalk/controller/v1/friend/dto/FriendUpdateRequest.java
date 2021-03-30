@@ -6,7 +6,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FriendUpdateRequest {
 
     @ApiModelProperty(value = "친구 pk값", required = true)
