@@ -25,6 +25,7 @@ class FriendServiceTest {
     private UserRepository userRepository;
 
     @Test
+    @Order(1)
     void 친구_등록() {
         //given
         userRepository.save(new User("doongji.team@gmail.com", "둥지", "P@ssword1", "010-0000-0000", LocalDate.of(1995, 10, 7)));
@@ -39,7 +40,24 @@ class FriendServiceTest {
         assertThat(friend.getFriend().getEmail()).isEqualTo("newdoongji.team@naver.com");
         assertThat(friend.getFriend().getName()).isEqualTo("친구친구");
         assertThat(friend.getFriend().getPhone()).isEqualTo("010-1111-0000");
-        assertThat(friend.getFriend().getBirthday()).isEqualTo(LocalDate.of(1995,2,19));
+        assertThat(friend.getFriend().getBirthday()).isEqualTo(LocalDate.of(1995, 2, 19));
+        log.info("Friend: {}", friend);
+    }
+
+    @Test
+    @Order(2)
+    void 닉네임_변경() {
+        //given
+        Long friendId = 2L;
+        String nickname = "칭구새이름";
+
+        //when
+        Friend friend = friendService.update(1L, friendId, nickname);
+
+        //then
+        assertThat(friend).isNotNull();
+        assertThat(friend.getFriendNickname()).isEqualTo(nickname);
+
         log.info("Friend: {}", friend);
     }
 

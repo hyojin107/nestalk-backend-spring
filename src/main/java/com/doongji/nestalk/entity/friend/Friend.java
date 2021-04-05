@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
@@ -29,20 +30,26 @@ public class Friend extends BaseTimeEntity {
     @JoinColumn(name = "target_id")
     private User friend;
 
-    private String friendNickName;
+    private String friendNickname;
 
-    public Friend(User me, User friend){
+    public void updateNickName(String friendNickname) {
+        checkArgument(isNotEmpty(friendNickname), "friendNickname is must be provided.");
+
+        this.friendNickname = friendNickname;
+    }
+
+    public Friend(User me, User friend) {
         this(null, me, friend, null);
     }
 
-    public Friend(Long friendId, User me, User friend, String friendNickName) {
+    public Friend(Long friendId, User me, User friend, String friendNickname) {
         checkNotNull(me.getUserId(), "userId must be provided.");
         checkNotNull(friend.getEmail(), "friend's email must be provided.");
 
         this.friendId = friendId;
         this.me = me;
         this.friend = friend;
-        this.friendNickName = defaultIfNull(friendNickName, friend.getName());
+        this.friendNickname = defaultIfNull(friendNickname, friend.getName());
     }
 
 }

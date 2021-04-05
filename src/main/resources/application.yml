@@ -33,5 +33,5 @@ jwt:
   token:
     header: x-access-token
     issuer: nestalk
-    secret: [ SECRET KEY ]
+    secret: ${random.uuid}
     expirationTime: 0

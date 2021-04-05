@@ -7,8 +7,7 @@ import com.doongji.nestalk.repository.friend.FriendRepository;
 import com.doongji.nestalk.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -25,12 +24,33 @@ public class FriendService {
 
         return userRepository.findByEmail(friendEmail)
                 .map(friend ->
-                    friendRepository.save(new Friend(
-                            userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)),
-                            friend)
-                    )
+                        friendRepository.save(
+                                new Friend(
+                                        findById(userId), friend
+                                )
+                        )
                 )
                 .orElseThrow(() -> new NotFoundException(User.class, friendEmail));
+    }
+
+    @Transactional
+    public Friend update(Long userId, Long friendId, String nickname) {
+        return friendRepository.findByMeAndFriend(
+                findById(userId),
+                userRepository.findById(friendId)
+                        .orElseThrow(() -> new NotFoundException(User.class, friendId))
+        ).map(friend -> {
+            friend.updateNickName(nickname);
+            return friend;
+        })
+                .orElseThrow(() ->
+                        new NotFoundException(Friend.class, friendId)
+                );
+    }
+
+    @Transactional(readOnly = true)
+    protected User findById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
     }
 
 }

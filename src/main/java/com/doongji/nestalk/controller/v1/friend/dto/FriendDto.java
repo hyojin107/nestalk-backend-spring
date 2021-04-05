@@ -26,7 +26,7 @@ public class FriendDto {
     private UserDto friend;
 
     @ApiModelProperty(value = "친구 닉네임", required = true)
-    private String friendNickName;
+    private String friendNickname;
 
     public FriendDto(Friend source) {
         copyProperties(source, this);
