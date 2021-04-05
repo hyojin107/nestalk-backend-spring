@@ -4,16 +4,15 @@ import com.doongji.nestalk.controller.v1.user.dto.*;
 import com.doongji.nestalk.entity.user.Role;
 import com.doongji.nestalk.entity.user.User;
 import com.doongji.nestalk.security.Jwt;
+import com.doongji.nestalk.security.JwtAuthentication;
 import com.doongji.nestalk.service.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -58,5 +57,13 @@ public class UserRestController {
     public ResponseEntity<FindEmailResponse> checkEmail(@RequestBody FindEmailRequest request) {
         String email = userService.findEmailByNameAndPhone(request.getName(), request.getPhone());
         return ResponseEntity.ok(new FindEmailResponse(email));
+    }
+
+    @ApiOperation(value = "회원탈퇴")
+    @DeleteMapping(path = "user")
+    public ResponseEntity<Void> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
+        Long userId = jwtAuthentication.userId;
+        userService.deleteById(userId);
+        return ResponseEntity.noContent().build();
     }
 }

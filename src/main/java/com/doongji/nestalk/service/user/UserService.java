@@ -59,4 +59,9 @@ public class UserService {
                 .map(User::getEmail)
                 .orElseThrow(() -> new NotFoundException(User.class, name, phone));
     }
+
+    @Transactional
+    public void deleteById(Long userId) {
+        userRepository.deleteByUserId(userId);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -80,6 +81,14 @@ class UserServiceTest {
         String email = userService.findEmailByNameAndPhone("둥지", "010-0000-0000");
         assertThat(email).isEqualTo(this.email);
         log.info("Found by {} {}: {}", name, phone, email);
+    }
+
+    @Test
+    void 회원_탈퇴() throws Exception {
+        Optional<User> findUser = userService.findByEmail(this.email);
+        log.info("Found User : {}", findUser.get());
+        userService.deleteById(findUser.get().getUserId());
+        assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
     }
 
 }
