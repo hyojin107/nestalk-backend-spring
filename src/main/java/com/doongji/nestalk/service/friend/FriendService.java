@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @RequiredArgsConstructor
@@ -51,6 +53,14 @@ public class FriendService {
     @Transactional(readOnly = true)
     protected User findById(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
+    }
+
+    @Transactional
+    public List<Friend> friendList(Long userId) {
+        return friendRepository.findAllByMe(
+                userRepository.findById(userId)
+                        .orElseThrow(() -> new NotFoundException(User.class, userId))
+        );
     }
 
 }
