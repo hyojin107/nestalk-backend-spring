@@ -9,9 +9,15 @@ import com.doongji.nestalk.service.friend.FriendService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.LifecycleState;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Api(tags = "친구 APIs")
 @RequestMapping("api/v1")
@@ -48,6 +54,21 @@ public class FriendController {
                         friendUpdateRequest.getNickname()
                 )
         ));
+    }
+    
+    @ApiOperation(value = "친구 목록 조회 (JWT 필요)")
+    @GetMapping("friends")
+    public ResponseEntity<List<FriendDto>> friendList(
+            @AuthenticationPrincipal JwtAuthentication authentication
+    ) {
+        return ResponseEntity.ok(
+                friendService.friendList(
+                        authentication.userId
+                )
+                .stream()
+                .map(entity -> new FriendDto(entity))
+                .collect(Collectors.toList())
+        );
     }
 
 }
