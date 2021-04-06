@@ -53,4 +53,12 @@ public class FriendService {
         return userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId));
     }
 
+    @Transactional
+    public void delete(Long userId, Long friendId) {
+        friendRepository.deleteByMeAndFriend(
+                userRepository.findById(userId).orElseThrow(() -> new NotFoundException(User.class, userId)),
+                userRepository.findById(friendId).orElseThrow(() -> new NotFoundException(User.class, friendId))
+        );
+    }
+
 }
