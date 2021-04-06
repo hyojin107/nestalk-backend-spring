@@ -50,4 +50,14 @@ public class FriendController {
         ));
     }
 
+    @ApiOperation(value = "친구 삭제")
+    @DeleteMapping(path = "friend/{friendId}")
+    public ResponseEntity<Void> deleteFriend(
+            @AuthenticationPrincipal JwtAuthentication jwtAuthentication,
+            @PathVariable Long friendId
+    ) {
+        friendService.delete(jwtAuthentication.userId, friendId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
