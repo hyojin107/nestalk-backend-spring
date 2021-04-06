@@ -7,8 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -59,6 +61,21 @@ class FriendServiceTest {
         assertThat(friend.getFriendNickname()).isEqualTo(nickname);
 
         log.info("Friend: {}", friend);
+    }
+
+    @Test
+    @Order(3)
+    @Transactional
+    void 친구목록조회(){
+        List<Friend> friendList = friendService.friendList(1L);
+
+        assertThat(friendList).isNotNull();
+
+        for(Friend f : friendList){
+            log.info("\n사용자 객체 getMe: {}", f.getMe());
+            log.info("\n친구 객체 getFriend: {}", f.getFriend());
+        }
+
     }
 
 }
