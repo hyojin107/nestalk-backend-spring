@@ -2,6 +2,7 @@ package com.doongji.nestalk.service.friend;
 
 import com.doongji.nestalk.entity.friend.Friend;
 import com.doongji.nestalk.entity.user.User;
+import com.doongji.nestalk.repository.friend.FriendRepository;
 import com.doongji.nestalk.repository.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -20,6 +21,9 @@ class FriendServiceTest {
 
     @Autowired
     private FriendService friendService;
+
+    @Autowired
+    private FriendRepository friendRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -59,6 +63,18 @@ class FriendServiceTest {
         assertThat(friend.getFriendNickname()).isEqualTo(nickname);
 
         log.info("Friend: {}", friend);
+    }
+
+    @Test
+    @Order(3)
+    void 친구_삭제() {
+        friendService.delete(1L, 2L);
+        User user = userRepository.findById(1L).get();
+        User friend = userRepository.findById(2L).get();
+
+        assertThat(friendRepository.findByMeAndFriend(user, friend)).isEmpty();
+
+        log.info("삭제된 친구: {}", friend);
     }
 
 }
